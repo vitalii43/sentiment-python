@@ -1,8 +1,8 @@
 import api from '@/services/api'
 export default {
-  fetchComments (videoUrl) {
+  fetchSentiment (comData) {
     return api().post('comments',{
-      videoUrl: videoUrl
+      commentsData: comData
     })
   }
 }

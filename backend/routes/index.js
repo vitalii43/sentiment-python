@@ -5,11 +5,8 @@ var spawn = require("child_process").spawn;
 /* GET home page. */
 router.get('/', function(req, res, next) {
 
-  var process = spawn('python', ['C:/LEARNING/sentimen-nltk/main.py', 'i like books', 'i like books', 'i like books'])
-  process.stdout.on('data', function(data){
-    console.log(JSON.parse(data))
-    res.render('index', { title: 'Express' });    
-  })
+  res.send('hi')    
+  
 });
 
 module.exports = router;

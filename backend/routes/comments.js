@@ -6,17 +6,12 @@ var spawn = require("child_process").spawn;
 
 /* GET users listing. */
 router.post('/', function(req, res, next) {
-    console.log(req.body)
-    var process = spawn('C:/Users/Vitalii_Bondarchuk/AppData/Roaming/npm/scraper.cmd', [req.body.videoUrl])
-    var result = ''
-    process.stdout.on('data', (data)=>{
-        result+=data.toString();
-    })
-    process.stdout.on('end', (data)=>{
-       console.log(result) 
-    })
-    process.stdout.pipe(res)
-    
+    var { commentsData } = req.body
+    var process = spawn('python', ['C:/LEARNING/sentimen-nltk/main.py', ...commentsData])
+    process.stdout.on('data', function(data){
+        console.log(JSON.parse(data))
+        res.send(data);    
+    })   
 });
 
 module.exports = router;
